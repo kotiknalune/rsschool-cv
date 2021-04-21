@@ -1,1 +1,1 @@
-[Link to CV](https://google.com)
+[Link to CV](https://kotiknalune.github.io/rsschool-cv/cv)
