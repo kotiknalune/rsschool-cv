@@ -1,2 +1,1 @@
-# rsschool-cv
-ios course:task 1 
+[Link to CV](https://google.com)
