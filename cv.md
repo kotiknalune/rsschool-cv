@@ -4,7 +4,7 @@
 
 ## Summary:
 
-I am a Javascript developer, focusing on React.js framework while studying backend on Node.js, I have experience in developing personal projects and I like to develop my self always. It's about a year ago that I started practical work in the field of development and as a freelancer. In this time I am trying to gain more experiences and knowledge. (write more)
+I am a Javascript developer, currently focusing on React.js framework. I have experience in developing personal projects and I enjoy pushing myself to learn new thechnologies. It's more than a year ago that I begain practical work in the field of development. Currently I work at EPAM as Junior Software Engineer. My ultimate goal this year is to switch to iOS development and puruse a full on career in that field. My greatest inspiration would be my husband, who has been in iOS for over 10 years now. 
 
 ## Skills:
 
@@ -18,33 +18,82 @@ I am a Javascript developer, focusing on React.js framework while studying backe
 <img align="left" alt="Git" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png" />
 <img align="left" alt="GitHub" width="26px" src="https://raw.githubusercontent.com/github/explore/78df643247d429f6cc873026c0622819ad797942/topics/github/github.png" />
 <img align="left" alt="Terminal" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/terminal/terminal.png" />
-
+<br>
 
 ## Code example:
 
 ```jsx
-// snippet or gist?
+export default class Key {
+  constructor(code, value) {
+    this.code = code;
+    this.value = value;
+    this.type = this.assignKeyType();
+  }
+
+  render() {
+    const keyClasses =
+      this.type === 'modifier'
+        ? `keyboard__key ${this.code.toLowerCase()}`
+        : 'keyboard__key';
+    if (this.type === TYPE.nav) return this.navigationKeys();
+    return createElement(
+      'button',
+      { class: keyClasses, type: this.type, code: this.code },
+      this.handleKeyValues()
+    );
+  }
+
+  assignKeyType() {
+    if (modifierKeys.includes(this.code)) return TYPE.mod;
+    if (this.code === 'Arrows') return TYPE.nav;
+    if (this.value.length > 1) return TYPE.symbol;
+    return TYPE.alpha;
+  }
+
+  navigationKeys() {
+    const navigationKeys = keyboardLayout.navigation.map((row) =>
+      row.map((arrow) => {
+        this.code = arrow;
+        return createElement(
+          'button',
+          {
+            class: `keyboard__key ${this.code}`,
+            type: this.type,
+            code: this.code,
+          },
+          createElement('span', { class: 'key__value' }, '')
+        );
+      })
+    );
+    return createElement('div', { class: 'keyboard__nav' }, navigationKeys);
+  }
+
+  handleKeyValues() {
+    const textValues = [];
+    textValues.push(createElement('span', { class: 'key__value' }, this.value[STANDARD]));
+    if (Number(this.value[SUPER]) === COMMAND) this.value[SUPER] = String.fromCharCode(Number(this.value[SUPER]));
+    if (this.value.length > 1)
+      textValues.push(createElement('span', { class: 'key__superscript' }, this.value[SUPER]));
+    return textValues;
+  }
+}
 ```
-
-## Experience:
-
-(add links to repos)
 
 ## Education:
 
 ### Diplomas:
 
-Bachelor of Computer Science (Ongoing 2024) - University of the People
+* Bachelor of Computer Science (Ongoing 2024) - University of the People
 
 ### Certificates:
 
-Node.js - The Rolling Scopes School (November 2020)
+* Node.js - The Rolling Scopes School (November 2020)
 
-Frontend - The Rolling Scopes School (September 2020)
+* Frontend - The Rolling Scopes School (September 2020)
 
 ## Languages:
 
-**English:** C2 Writing /C2 Speaking
+**English:** C1+ Writing /C2 Speaking
 
 **Spanish**: B2 Writing / B2+ Speaking
 
